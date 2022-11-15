@@ -8,8 +8,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout the code
       - uses: actions/checkout@v1
+      - name: Checkout the code
+      
 
       - name: Deploy to my EC2 instance
         env:
