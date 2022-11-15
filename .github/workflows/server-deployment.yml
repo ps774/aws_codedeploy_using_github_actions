@@ -18,4 +18,4 @@ jobs:
         run: |
          echo $SSH_KEY | base64 -d > id_rsa_github_secret 
          chmod 400 id_rsa_github_secret   
-             ssh -i id_rsa_github_secret -o StrictHostKeyChecking=no ec2-user@54.162.160.129 "/var/www/html/git-ec2 && export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_github_secret" git pull origin main"
+             ssh -i id_rsa_github_secret -o StrictHostKeyChecking=no ec2-user@54.162.160.129 "/var/www/html/git-ec2 && export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_rsa_github_secret.pub" git pull origin main"
