@@ -14,3 +14,11 @@ jobs:
     - name: Say Hello
       run: echo "Hello there!" 
       
+    - name: Deploy code to Server   
+      env:
+        SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }} 
+      run: | 
+        echo "$SSH_KEY" > ssh-key && chmod 600 ssh-key
+        ssh -i ssh-key -o StrictHostKeyChecking=no ec2-user@54.198.168.141 "cd /var/www/html/git-ec2 && GIT_SSH_COMMAND='ssh -i /home/ec2-user/.ssh/ssh-key' git pull origin main"
+      
+      
