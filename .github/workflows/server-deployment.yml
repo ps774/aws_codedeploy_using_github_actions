@@ -1,4 +1,4 @@
-name: Server Deployment
+name: "Server Deployment"
 
 on:
   push:
@@ -11,24 +11,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    
     - name: Say Hello
       run: "Hello there!" 
       
-    - name: Deploy code to Server     
-     
-      env:
-            SSH_KEY: ${{ secrets.AWS_PRIVATE_KEY  }}
-            HOSTNAME : ${{ secrets.HOSTNAME  }}
-            USER_NAME : ${{ secrets.USER_NAME  }}
-            
-      run: |
-          echo "$SSH_KEY" > ssh-key && chmod 600 ssh-key
-          ssh -o StrictHostKeyChecking=no 'ssh -i ssh-key ${USER_NAME}@${HOSTNAME} '
-          
-            #Now we have got the access of EC2 and we will start the deploy .
-            cd /var/www/html/git-ec2 &&
-            git checkout main &&
-            git fetch --all &&
-            git reset --hard origin/main &&
-            git pull origin main 
